@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaMind - Your Dashboard</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-blue': '#00c6ff', 'brand-purple': '#0072ff',
+                        'dark-bg': '#0a192f', 'card-bg': '#172a46',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f; /* dark-bg */
+            color: #cbd5e1; /* slate-300 */
+        }
+        .header {
+            background-color: #0a192f; /* dark-bg */
+            border-bottom: 1px solid #1e293b; /* slate-800 */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #172a46; /* card-bg */
+            border-radius: 0.75rem;
+            border: 1px solid #334155; /* slate-700 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: #e2e8f0; /* slate-200 */
+            margin-bottom: 1.5rem;
+        }
+        .card-title img { margin-right: 0.5rem; }
+        .cta-button {
+            background-image: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+        .cta-button:hover { opacity: 0.9; }
+        /* Style for the modal */
+        .modal-backdrop {
+             background-color: rgba(10, 25, 47, 0.8); /* dark-bg with opacity */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="header sticky top-0 z-50 bg-dark-bg/80 backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="aquamind_logo.jpg" alt="Aquamind Logo" class="h-10 w-auto"> 
+                    <span class="text-2xl font-bold gradient-text">AquaMind</span>
+                </a>
+                <div class="hidden md:flex space-x-4">
+                    <a href="#" class="bg-card-bg text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                    <a href="reports.html" class="text-slate-300 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Reports</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" id="profile-link" class="text-slate-300 hover:text-brand-blue">Profile</a> 
+                <a href="#" id="btn-logout" class="text-slate-300 hover:text-brand-blue">Exit</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto max-w-7xl px-6 py-8">
+        <h1 class="text-3xl font-bold text-white mb-6">AquaMind Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <div class="card">
+                <div class="card-title">
+                    <img src="https://placehold.co/24/00c6ff/ffffff?text=" class="rounded-full" alt="Flow Icon">
+                    <span>Smart Flow Tracking</span>
+                </div>
+                <div class="relative w-full h-40 mx-auto">
+                    <canvas id="flow-gauge-chart"></canvas>
+                    <div id="current-flow-text" class="absolute inset-0 flex items-center justify-center text-3xl font-bold text-white">...</div>
+                </div>
+                <p class="text-center text-sm text-slate-400 mt-4">Connected via: ESP32_Garden</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <img src="https://placehold.co/24/0072ff/ffffff?text=" class="rounded-full" alt="Usage Icon">
+                    <span>Real-Time Dashboard</span>
+                </div>
+                <p class="text-sm text-slate-400 -mt-4 mb-2">Daily Usage (Liters)</p>
+                <div class="relative w-full h-40">
+                    <canvas id="daily-usage-chart"></canvas>
+                </div>
+                <p class="text-sm text-slate-400 mt-4">Comparison: 15% lower than yesterday</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <img src="https://placehold.co/24/ef4444/ffffff?text=" class="rounded-full" alt="Alert Icon">
+                    <span>Leak Detection Alerts</span>
+                </div>
+                <p id="leak-alert-status" class="flex items-center text-green-400 font-semibold mb-4">
+                    <span class="h-3 w-3 bg-green-400 rounded-full mr-2"></span>
+                    No leaks detected.
+                </p>
+                <a href="#" class="cta-button mb-4">Run Diagnostic</a>
+                <p id="leak-alert-info" class="text-sm text-slate-400">No possible leaks found.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                     <img src="https://placehold.co/24/22c55e/ffffff?text=" class="rounded-full" alt="Analytics Icon">
+                    <span>Analytics & Reports</span>
+                </div>
+                <div class="relative w-full h-40">
+                    <canvas id="analytics-chart"></canvas>
+                </div>
+                <p class="text-sm text-slate-400 mt-4">Goal based savings available.</p>
+                <a href="#" class="cta-button mt-4">Generate Full Report</a>
+            </div>
+
+            <div class="card lg:col-span-2">
+                <div class="card-title">
+                     <img src="https://placehold.co/24/f59e0b/ffffff?text=" class="rounded-full" alt="Recommendation Icon">
+                    <span>AI Recommendation System</span>
+                </div>
+                <p id="ai-recommendation" class="text-slate-300 mb-2">Suggestion: ...</p>
+                <p id="ai-anomaly" class="text-slate-300">Anomaly: ...</p>
+                <a href="#" id="view-tips-btn" class="cta-button mt-4 w-max">View Tips</a>
+            </div>
+
+            <div class="card lg:col-span-2">
+                <div class="card-title">
+                     <img src="https://placehold.co/24/fcd34d/ffffff?text=" class="rounded-full" alt="Savings Icon">
+                    <span>Gamified Savings</span>
+                </div>
+                <p class="text-3xl font-bold text-white mb-2">
+                    <span id="user-points">...</span> Points
+                </p>
+                <p class="text-slate-300">Badges: "Track Warrior"</p>
+                <a href="#" class="cta-button mt-4 w-max">Redeem Rewards</a>
+            </div>
+
+        </div> 
+    </main>
+
+    <div id="profile-modal" class="hidden fixed inset-0 modal-backdrop flex items-center justify-center z-50 p-4">
+        <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 w-full max-w-md relative">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold text-white mb-6 text-center gradient-text">Your Profile</h2>
+            <div class="space-y-4">
+                <div>
+                    <p class="text-sm font-medium text-slate-400">Email:</p>
+                    <p id="profile-email" class="text-lg text-white">Loading...</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-400">Name:</p>
+                    <p id="profile-name" class="text-lg text-white">Loading...</p> 
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-400">Location:</p>
+                    <p id="profile-location" class="text-lg text-white">Loading...</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tips-modal" class="hidden fixed inset-0 modal-backdrop flex items-center justify-center z-50 p-4">
+        <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 w-full max-w-lg relative max-h-[80vh] overflow-y-auto">
+            <button id="close-tips-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold text-white mb-6 text-center gradient-text">Water Saving Tips</h2>
+            <ul id="tips-list" class="space-y-3 text-slate-300 list-disc list-inside">
+                <li>Loading tips...</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
