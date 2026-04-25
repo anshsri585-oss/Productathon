@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaMind - Smart Water Management</title> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#00c6ff',
+                        'brand-purple': '#0072ff',
+                        'dark-bg': '#0a192f', // A deep navy blue
+                        'card-bg': '#172a46', // A slightly lighter navy
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f; /* dark-bg */
+            color: #cbd5e1; /* slate-300 */
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 1)), url('https://placehold.co/1600x900/0a192f/cccccc?text=Abstract+Water+Tech');
+            background-size: cover;
+            background-position: center;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cta-button {
+            background-image: linear-gradient(to right, #00c6ff, #0072ff);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 15px rgba(0, 198, 255, 0.2);
+        }
+        .outline-button {
+            border-color: #00c6ff;
+            color: #00c6ff;
+            transition: all 0.3s ease;
+        }
+        .outline-button:hover {
+            background-color: rgba(0, 198, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/80 backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="aquamind_logo.jpg" alt="AquaMind Logo" class="h-10 w-auto"> 
+                <span class="text-2xl font-bold gradient-text">AquaMind</span> 
+            </a>
+            
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="text-slate-300 hover:text-brand-blue transition">Features</a>
+                <a href="#benefits" class="text-slate-300 hover:text-brand-blue transition">Benefits</a>
+                <a href="#testimonials" class="text-slate-300 hover:text-brand-blue transition">Testimonials</a>
+                <a href="#pricing" class="text-slate-300 hover:text-brand-blue transition">Pricing</a>
+               <a href="login.html" class="px-5 py-2 rounded-md text-white font-medium cta-button">
+                 Get Started
+               </a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-slate-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-card-bg">
+            <a href="#features" class="block px-6 py-3 text-slate-300 hover:bg-dark-bg">Features</a>
+            <a href="#benefits" classs="block px-6 py-3 text-slate-300 hover:bg-dark-bg">Benefits</a>
+            <a href="#testimonials" class="block px-6 py-3 text-slate-300 hover:bg-dark-bg">Testimonials</a>
+            <a href="#pricing" class="block px-6 py-3 text-slate-300 hover:bg-dark-bg">Pricing</a>
+            <a href="login.html" class="block px-6 py-3 m-4 text-center rounded-md text-white font-medium cta-button">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-bg pt-32 pb-24 md:pt-48 md:pb-32 text-center text-white">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                    Revolutionize Your <span class="gradient-text">Water Management</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10">
+                    Harness the power of IoT and AI for intelligent water conservation, real-time monitoring, and predictive analytics.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#features" class="px-8 py-3 rounded-md text-white font-semibold cta-button text-lg">
+                        Learn More
+                    </a>
+                    <a href="login.html" class="px-8 py-3 rounded-md font-semibold outline-button text-lg">
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-20 bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why Choose AquaMind?</h2> 
+                    <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                        Our platform provides cutting-edge tools to optimize water usage, prevent waste, and ensure sustainability.
+                    </p>
+                </div>
+                
+               <div class="grid md:grid-cols-3 gap-8">
+    
+                <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-blue mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Real-time Monitoring</h3>
+                    <p class="text-slate-400">Track flow, pressure & water quality 24/7 with instant alerts.</p>
+                </div>
+
+                <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-blue mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zM15 19V9a2 2 0 012-2h2a2 2 0 012 2v10"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">AI-Powered Analytics</h3>
+                    <p class="text-slate-400">Predict demand, find inefficiencies & optimize usage.</p>
+                </div>
+
+                <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-blue mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879a1 1 0 011.414 0L15 15"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Automatic Leak Detection</h3>
+                    <p class="text-slate-400">Instantly detect leaks & auto shut-off for safety.</p>
+                </div>
+
+                <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-blue mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6M5 21h14V7H5v14zM3 3h18v2H3V3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Analytics & Reports</h3>
+                    <p class="text-slate-400">Interactive dashboards with exportable reports & trends.</p>
+                </div>
+
+                <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-blue mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M7 10h3m4 0h3M7 14h7m4 4h-6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Your Usage & Bills</h3>
+                    <p class="text-slate-400">Transparent billing + daily/weekly usage insights.</p>
+                </div>
+
+                <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 transform hover:-translate-y-2 transition duration-300">
+                    <div class="text-brand-blue mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h10M4 14h6M4 18h8"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Real-time Dashboard</h3>
+                    <p class="text-slate-400">One centralized dashboard showing all water systems live.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="benefits" class="py-20 bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">How It Works</h2>
+                    <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                        A simple, seamless process to get you started with smart water management.
+                    </p>
+                </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-slate-700 hidden md:block" style="transform: translateX(-50%);"></div>
+                    
+                    <div class="mb-12 flex md:items-center">
+                        <div class="md:w-1/2 md:pr-12">
+                            <div class="bg-card-bg p-6 rounded-lg shadow-xl border border-slate-700">
+                                <span class="text-sm font-bold gradient-text">STEP 1</span>
+                                <h3 class="text-xl font-bold text-white mt-2 mb-2">Install Smart Sensors</h3>
+                                <p class="text-slate-400">Easily install our high-precision IoT sensors at key points in your water system.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/2 pl-12 relative">
+                            <div class="absolute left-0 top-1/2 w-4 h-4 bg-brand-blue rounded-full" style="transform: translate(-50%, -50%);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12 flex md:items-center flex-row-reverse md:flex-row">
+                        <div class="hidden md:block w-1/2 pr-12 relative">
+                            <div class="absolute right-0 top-1/2 w-4 h-4 bg-brand-blue rounded-full" style="transform: translate(50%, -50%);"></div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                             <div class="bg-card-bg p-6 rounded-lg shadow-xl border border-slate-700">
+                                <span class="text-sm font-bold gradient-text">STEP 2</span>
+                                <h3 class="text-xl font-bold text-white mt-2 mb-2">Connect to the Cloud</h3>
+                                <p class="text-slate-400">Sensors securely transmit data in real-time to the AquaMind cloud platform.</p> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-12 flex md:items-center">
+                        <div class="md:w-1/2 md:pr-12">
+                             <div class="bg-card-bg p-6 rounded-lg shadow-xl border border-slate-700">
+                                <span class="text-sm font-bold gradient-text">STEP 3</span>
+                                <h3 class="text-xl font-bold text-white mt-2 mb-2">Analyze & Get Insights</h3>
+                                <p class="text-slate-400">Access your dashboard to see powerful analytics, reports, and actionable insights.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/2 pl-12 relative">
+                            <div class="absolute left-0 top-1/2 w-4 h-4 bg-brand-blue rounded-full" style="transform: translate(-50%, -50%);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+        </section>
+
+        <section id="testimonials" class="py-20 bg-card-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What Our Customers Say</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-dark-bg p-8 rounded-lg shadow-lg border border-slate-700">
+                         <p class="text-slate-300 italic mb-6">"AquaMind revolutionized how we manage water at our facility. We identified three major leaks in the first week and saved thousands."</p> 
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/50x50/00c6ff/ffffff?text=JS" alt="User" class="w-12 h-12 rounded-full mr-4 border-2 border-brand-blue">
+                            <div>
+                                <h4 class="text-white font-bold">Jitender Sharma</h4>
+                                <p class="text-slate-400 text-sm">Operations Manager, EcoCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-bg p-8 rounded-lg shadow-lg border border-slate-700">
+                        <p class="text-slate-300 italic mb-6">"The AI analytics are incredibly accurate. We've optimized our irrigation schedules and reduced our water consumption by 30%."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/50x50/0072ff/ffffff?text=MD" alt="User" class="w-12 h-12 rounded-full mr-4 border-2 border-brand-blue">
+                            <div>
+                                <h4 class="text-white font-bold">Manav Dahiya</h4>
+                                <p class="text-slate-400 text-sm">Head of Sustainability, AgriGrow</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-bg p-8 rounded-lg shadow-lg border border-slate-700">
+                        <p class="text-slate-300 italic mb-6">"The peace of mind from the real-time alerts is priceless. We caught a pipe burst at 3 AM before it became a disaster."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/50x50/00c6ff/ffffff?text=CW" alt="User" class="w-12 h-12 rounded-full mr-4 border-2 border-brand-blue">
+                            <div>
+                                <h4 class="text-white font-bold">Chirag Wadhwa</h4>
+                                <p class="text-slate-400 text-sm">Property Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="py-20 bg-dark-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Simple, Transparent Pricing</h2>
+                    <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                        Choose the plan that's right for your needs.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 flex flex-col">
+                        <h3 class="text-2xl font-bold text-white mb-2">Basic</h3>
+                        <p class="text-slate-400 mb-6">For small sites & homes</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-white">Rs.499</span>
+                            <span class="text-slate-400">/mo</span>
+                        </div>
+                        <ul class="space-y-3 text-slate-300 mb-8 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Up to 5 Sensors</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Real-time Dashboard</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Email & SMS Alerts</li>
+                        </ul>
+                        <a href="login.html" class="w-full text-center px-6 py-3 rounded-md font-semibold outline-button">
+                            Get Started
+                        </a>
+                    </div>
+                    
+                    <div class="bg-card-bg p-8 rounded-lg shadow-2xl border-2 border-brand-blue flex flex-col relative overflow-hidden">
+                        <span class="absolute top-0 right-0 bg-brand-blue text-white text-xs font-bold px-4 py-1" style="transform: rotate(45deg) translate(25%, -20px); transform-origin: top left; width: 100px; text-align: center; right: -28px; top: 8px;">
+                            Popular
+                        </span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Pro</h3>
+                        <p class="text-slate-400 mb-6">For medium businesses</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-white">Rs.999</span>
+                            <span class="text-slate-400">/mo</span>
+                        </div>
+                        <ul class="space-y-3 text-slate-300 mb-8 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Up to 20 Sensors</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Real-time Dashboard</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Email & SMS Alerts</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>AI Analytics & Reports</li>
+                        </ul>
+                        <a href="login.html" class="w-full text-center px-6 py-3 rounded-md font-semibold cta-button">
+                            Choose Pro
+                        </a>
+                    </div>
+
+                    <div class="bg-card-bg p-8 rounded-lg shadow-xl border border-slate-700 flex flex-col">
+                        <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+                        <p class="text-slate-400 mb-6">For large scale operations</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-white">Contact Us</span>
+                        </div>
+                        <ul class="space-y-3 text-slate-300 mb-8 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Unlimited Sensors</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Advanced Dashboards</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Priority Support</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-brand-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Custom Integrations</li>
+                        </ul>
+                        <a href="#contact" class="w-full text-center px-6 py-3 rounded-md font-semibold outline-button">
+                            Contact Sales
+                        </a>
+                    </div>
+                 </div> 
+            </div>
+        </section>
+    </main>
+
+     <section id="contact" class="py-20 bg-card-bg">
+        <div class="container mx-auto px-6 text-center">
+             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get in Touch</h2>
+             <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+                 Have questions or need a custom solution? Reach out to our team.
+             </p>
+             <a href="mailto:your-support-email@example.com?subject=AquaMind Inquiry" class="px-8 py-3 rounded-md text-white font-semibold cta-button text-lg"> 
+                 Contact Us
+             </a>
+        </div>
+     </section>
+
+     <footer class="bg-dark-bg py-8 border-t border-slate-800">
+        <div class="container mx-auto px-6 text-center text-slate-400 text-sm">
+             &copy; 2025 AquaMind. All rights reserved. | <a href="#" class="hover:text-brand-blue">Privacy Policy</a> | <a href="#" class="hover:text-brand-blue">Terms of Service</a> 
+        </div>
+     </footer>
+
+
+    <script>
+        document.getElementById('mobile-menu-btn').onclick = function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>
